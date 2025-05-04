@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Savings Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Savings Buckets</h1>
+  <div class="container">
+    <form id="transaction-form">
+      <input type="text" id="bucket" placeholder="Bucket name (e.g. House)" required />
+      <input type="number" id="amount" placeholder="Amount" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="bucket-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
