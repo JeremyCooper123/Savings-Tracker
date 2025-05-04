@@ -1,25 +1,34 @@
 const form = document.getElementById('transaction-form');
 const list = document.getElementById('bucket-list');
 
-let buckets = [];
+// Replace this with your actual Apps Script Web App URL:
+const API_URL = 'https://script.google.com/macros/s/AKfycbxGkM8wgyHxGYK_MbePXuhsRbZEqrCjm96niiS0Y0LLBHc_QIdv99zR_BWZxNOnCAxzSw/exec';
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const bucket = document.getElementById('bucket').value.trim();
   const amount = parseFloat(document.getElementById('amount').value);
 
   if (bucket && !isNaN(amount)) {
-    buckets.push({ bucket, amount });
-    renderList();
-    form.reset();
+    // Send data to Google Sheets
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({ bucket, amount }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const result = await response.json();
+      if (result.status === 'success') {
+        alert('Saved to Google Sheets!');
+        form.reset();
+      } else {
+        alert('Oops! Something went wrong.');
+      }
+    } catch (err) {
+      alert('Error connecting to Google Sheets.');
+      console.error(err);
+    }
   }
 });
 
-function renderList() {
-  list.innerHTML = '';
-  buckets.forEach((entry, index) => {
-    const li = document.createElement('li');
-    li.textContent = `${entry.bucket}: $${entry.amount.toFixed(2)}`;
-    list.appendChild(li);
-  });
-}
