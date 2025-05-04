@@ -2,7 +2,7 @@ const form = document.getElementById('transaction-form');
 const list = document.getElementById('bucket-list');
 
 // Replace this with your actual Apps Script Web App URL:
-const API_URL = 'https://script.google.com/macros/s/AKfycbxGkM8wgyHxGYK_MbePXuhsRbZEqrCjm96niiS0Y0LLBHc_QIdv99zR_BWZxNOnCAxzSw/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyuWarsnsT7yTZUzAWrm-jSw9sJa5QpqfIMQsyAbqGd/dev';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
